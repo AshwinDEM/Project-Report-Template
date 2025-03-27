@@ -1,4 +1,4 @@
-# RVCE-Latex-Project-Report-Template
+# AIML EL Report Template
 
 This project template exists only because the original upstream repo has things that seem overkill for a simple EL report, such as the extra page for each chapter, QR Code, background images, etc. \
 If you are to use a template for presentations that are deemed important enough to use those features, please use the original repo. \
