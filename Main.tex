@@ -1,56 +1,59 @@
-\documentclass[12pt,oneside,a4paper]{book} % This style for A4 format.
+\iffalse %% Multi line comments
+
+The main file, all the things here get rendered. See ecproject.sty file to manipulate the front page of the pdf, and see the respective files in CoverPages/ to change the certificate, declaration, etc. Write the bibliography in Auxfiles/ProjectBib.bib.
+
+\fi
+
+\documentclass[12pt, oneside ,a4paper]{book} % This style for A4 format.
 
 \input{./AuxFiles/Packages}
 
-%% Document settings
-\title{Design and Analysis of Oversampling ADC}
-\subCode{18EC81}
-\Department[ECE]{Electronics and Communication Engineering}
-\academicYear{2023-24}
 
+%% Document settings
+\title{Title}
+\subCode{CourseCode}
+\semester{X}
+\course{Course Name}
 %%%%%%%%%%%%%%%Minor (or) Major report%%%%%%%%%%%%%%%
 %% Uncomment \MinorProject line, if the report is for Minor project.
 %\MinorProject
-
-%%%%%%%%%%%%%%%%%%%For PG program%%%%%%%%%%%%%%%%%%%
-%% Uncomment \pgProgram command and define appropriate values for \MastersIn{} and \pgProgramName{}
-
-%\pgProgram%
-\MastersIn[M.Tech]{Master of Technology}
-\pgProgramName{VLSI Design \& Embedded Systems}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %% Student Details%%%
-\stuNameA{P Narashimaraja}
-\stuUSNA{1RV16EC005}
-%\stuNameB{Nithin M}
-%\stuUSNB{1RV16EC006}
-%\stuNameC{Subrahmanya K N}
-%\stuUSNC{1RV16EC007}
-%\stuNameD{Subrahmanya K N}
-%\stuUSND{1RV16EC007}
+\stuNameA{Ashwin Ajoy Dharmavaram}
+\stuUSNA{1RV22AI011}
+\stuNameB{Student 2}
+\stuUSNB{USN 2}
+\stuNameC{Student 3}
+\stuUSNC{USN 3}
+% \stuNameD{Name4}
+% \stuUSND{USN4}
+% \stuNameE{Name5}
+% \stuUSNE{USN 5}
 
 %% Internal Guide%%%%
-\guideNameA{Mr. Ramavenkateshwaran}
-\guideDesignationA{Assistant Professor}
-\guideDeptA{Dept. of ECE}
+\guideNameA{Dr. Course Professor}
+\guideDesignationA{Designation}
+\guideDeptA{Department of AIML}
 \guideOrgA{RV College of Engineering}
 
-%%%External Guide%%%%
-%\guideNameB{Dr. Ramavenkateshwaran}
-%\guideDesignationB{Assistant Professor}
-%\guideDeptB{Dept. of ECE}
-%\guideOrgB{RV College of Engineering}
+
+%%External Guide%%%%
+% \guideNameB{Dr. B. Sathish Babu}
+% \guideDesignationB{Professor and HoD}
+% \guideDeptB{AI\&ML}
+% \guideOrgB{RV College of Engineering}
 
 %\guideNameC{Dr. Ramavenkateshwaran}
 %\guideDesignationC{Assistant Professor}
 %\guideDeptC{Dept. of ECE}
 %\guideOrgC{RV College of Engineering}
 
-\panelMemberA{Dr. Kariyappa}
-\panelMemberDesigA{Professor}
-\panelMemberB{Prof. P N Jayanthi}
-\panelMemberDesigB{Assistant Professor}
+% \panelMemberA{Dr. Kariyappa}
+% \panelMemberDesigA{Professor}
+% \panelMemberB{Prof. P N Jayanthi}
+% \panelMemberDesigB{Assistant Professor}
 
 % Added Ver 3.6
 %% Project co-ordonators
@@ -61,19 +64,28 @@
 \projectMemberC{Prof. Subramanya K N}
 \projectMemberDesigC{Assistant Professor}
 
-%%%%%%%%%%%%%%%%% Esteemed Members %%%%%%%%%%%%%%%%%%
-\HOD{Dr. K S Geetha}
+
+\Department[AI]{Artificial Intelligence \& Machine Learning}
+
+\HOD{Dr. B. Sathish Babu}
 \Principal{Dr. K. N. Subramanya}
 
-%%%%%%%%%%%%%%%%%%%%%  QRL %%%%%%%%%%%%%%%%%%%%%%%%%%
+\academicYear{2025-26}
+
 \QRurl{}
 %\QRurl{https://drive.google.com/open?id=1jm-POmuq-ZZ1tT5m-xAdCDRnwvLZH8q-}
+%%%%%%%%%%%%%%%%%%%For PG program%%%%%%%%%%%%%%%%%%%
+%% Uncomment \pgProgram command and define appropriate values for \MastersIn{} and \pgProgramName{}
+
+%\pgProgram%
+\MastersIn[M.Tech]{Master of Technology}
+\pgProgramName{VLSI Design \& Embedded Systems}
 
 %%%%%%%%%%%%%%%%%%Draft report%%%%%%%%%%%%%%%%%%
 \DraftCopy %Not yet implemented, if anyone interested, do contact me at pnarashimaraja@rvce.edu.in (or) narashimaraja@gmail.com
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%% Glossaries & Acronyms %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%Acronyms%%%%%%%%%%%%%%%%%%
 \newglossary[sym]{symbolList}{sym1}{sym2}{List of Symbols}
 \makeglossaries
 % Acronyms
@@ -81,7 +93,7 @@
 \renewcommand{\glspostdescription}{}% To remove dot at the end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%Bibliography%%%%%%%%%%%%%%%%%%%%%
 \usepackage[backend=bibtex,style=ieee]{biblatex}
 % If backend is set to bibtex, then configure texmaker Bi(La)Tex with "bibtex %"
 \addbibresource{./AuxFiles/ProjectBib.bib}%Add bib file with extention
@@ -92,30 +104,30 @@
 %% Uncomment the following lines for watermarking and run it more than 2 times for proper alignment
 \usepackage{background}
 \backgroundsetup{scale=1, angle=0, firstpage = false, opacity=1, contents={
-\begin{tikzpicture}[remember picture, overlay]
-\node at ([yshift=0pt, xshift=0pt]current page.center){\includegraphics[width=0.6\textwidth]{Figures/RVlogoVecW}};
-\end{tikzpicture}
+% \begin{tikzpicture}[remember picture, overlay]
+% \node at ([yshift=0pt, xshift=0pt]current page.center){\includegraphics[width=0.6\textwidth]{Figures/RVlogoVecW}};
+% \end{tikzpicture}
 }}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{document}
 \NoBgThispage% Don't remove this command, even if you want logo on the first page.	
 \maketitle
-%\pagestyle{empty}
-\newpage
+\begin{sloppypar}
+% \pagestyle{emptypg}
+% \newpage
 \begin{spacing}{1.5}
 \input{./CoverPages/Certificate}
-\newpage
-\input{./CoverPages/Declaration}
-\newpage
-\input{./CoverPages/Ack}
-\newpage
+% \newpage
+% \input{./CoverPages/DeclarationAIML}
+% \newpage
+% \input{./CoverPages/Ack}
+%  \newpage
 \pagenumbering{roman}
-\chapter*{Abstract}
-\input{./CoverPages/Abstract}
+% \chapter* {Abstract}
+% \input{./CoverPages/Abstract}
 \end{spacing}
 \newpage
-\pagestyle{fplain}
+\pagestyle{mplain}
 \begin{spacing}{1.5}
 	\tableofcontents	
 \end{spacing}
@@ -132,19 +144,21 @@
 	\listoftables	
 \end{spacing}
 \newpage
-\printglossary[type=\acronymtype, title= Abbreviations, toctitle=Abbreviations]
-\newpage
-\printglossary[type=symbolList, title= List of Symbols, toctitle=List of Symbols]
+% \printglossary[type=\acronymtype, title= Abbreviations, toctitle=Abbreviations]
+% \newpage
+% \printglossary[type=symbolList, title= List of Symbols, toctitle=List of Symbols]
 
 \mainmatter
 \pagestyle{mplain}
 \glsresetall
 \begin{spacing}{1.5}
 %Chapter 1 
-\input{./Chapter1/chapter1-Intro}
+\input{./Chapter1/chapter1-intro}
+
 
 %Chapter 2
-\input{./Chapter2/chapter2-Funda}
+\input{./Chapter2/chapter2-LitReview}
+
 
 %Chapter 3
 \input{./Chapter3/chapter3-design}
@@ -158,13 +172,13 @@
 %Chapter 6
 \input{./Chapter6/chapter6-conclution}
 
-%% Uncomment the following 2 commands to add Appendix chapters
+% Uncomment the following 2 commands to add Appendix chapters
 \appendix
 \input{./Appendix/Apndx}%Appendix Chapter 1
 
 \backmatter
 \clearpage
-\printbibliography%
-
+\printbibliography
 \end{spacing}
+\end{sloppypar}
 \end{document}

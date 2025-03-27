@@ -10,7 +10,7 @@
 \RequirePackage{tikz}
 \RequirePackage{xifthen}
 \RequirePackage{fancyhdr}
-\RequirePackage{qrcode}
+% \RequirePackage{qrcode}
 \RequirePackage{background}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -77,6 +77,10 @@
 \newcommand*{\@stuNameD}{}
 \newcommand*{\stuUSND}[1]{\gdef\@stuUSND{#1}}
 \newcommand*{\@stuUSND}{}
+\newcommand*{\stuNameE}[1]{\gdef\@stuNameE{#1}\global\StuNameBUsedtrue}
+\newcommand*{\@stuNameE}{}
+\newcommand*{\stuUSNE}[1]{\gdef\@stuUSNE{#1}}
+\newcommand*{\@stuUSNE}{}
 
 % Guides cmd set
 \newcommand*{\guideNameA}[1]{\gdef\@guideNameA{#1}}
@@ -165,6 +169,8 @@
 \newcommand*{\printStuUSNC}{\leavevmode\@stuUSNC}
 \newcommand*{\printStuNameD}{\leavevmode\@stuNameD}
 \newcommand*{\printStuUSND}{\leavevmode\@stuUSND}
+\newcommand*{\printStuNameE}{\leavevmode\@stuNameE}
+\newcommand*{\printStuUSNE}{\leavevmode\@stuUSNE}
 % Added:Ver 3.6
 %%Project co-ordinator Names
 \newcommand*{\printProjectMemberA}{\leavevmode\@projectMemA}
@@ -173,6 +179,17 @@
 \newcommand*{\printProjectMemberDesigB}{\leavevmode\@projectMemDesigB}
 \newcommand*{\printProjectMemberC}{\leavevmode\@projectMemC}
 \newcommand*{\printProjectMemberDesigC}{\leavevmode\@projectMemDesigC}
+
+%% Semester 
+\newcommand*{\semester}[1]{\gdef\@semesterNum{#1}}
+\newcommand*{\@semesterNum}{\texttt{\string\semester}} 
+\newcommand*{\printSemester}{\leavevmode\@semesterNum}
+
+%% CourseName
+\newcommand*{\course}[1]{\gdef\@courseName{#1}}
+\newcommand*{\@courseName}{\texttt{\string\course}} 
+\newcommand*{\printCourseName}{\leavevmode\@courseName}
+
 
 %Added: Ver 3.4
 %Added to count the number of lines used in the title - to adjust the spacing of title page
@@ -193,34 +210,75 @@
 %Added in Ver 3.6 [13/08/2023]
 \NoBgThispage
 \begin{tikzpicture}[remember picture, overlay]
-  \draw[line width = 4pt] ($(current page.north west) + (0.75in,-0.75in)$) rectangle ($(current page.south east) + (-0.75in,0.75in)$);
+  \draw[line width = 1.5pt] ($(current page.north west) + (0.75in,-0.75in)$) rectangle ($(current page.south east) + (-0.75in,0.75in)$);
 \end{tikzpicture}
-\begin{tikzpicture}[remember picture, overlay]
-  \node[anchor=north east,inner sep=0, fill=white] (image) at ($(current page.north east) + (-0.15in,-0.15in)$) {\fbox{\qrcode[hyperlink,height=1.75cm]{\@qrurl}}};
-\end{tikzpicture}
-\begin{center}
-\vspace{-1cm}
-{\includegraphics[width=1\textwidth]{Figures/RV_newLogo}\par}
-\vspace{1cm}
+% \begin{tikzpicture}[remember picture, overlay]
+%   \node[anchor=north east,inner sep=0, fill=white] (image) at ($(current page.north east) + (-0.15in,-0.15in)$) {\fbox{\qrcode[hyperlink,height=1.75cm]{\@qrurl}}};
+% \end{tikzpicture}
 
-{\huge\bfseries\@title\unskip\strut\par \global\titlelines=\the\prevgraf}% To count the number of lines used in the title - to adjust the spacing of title page
+\vspace{-1cm}
+% {\includegraphics[width=0.4\textwidth]{Figures/image5.png}
+% \hspace{3cm}
+% \includegraphics[width=0.35\textwidth]{Figures/image6.png}
+% \par}
+\begin{center}
+
+
+
+{\LARGE\bfseries {RV COLLEGE OF ENGINEERING\textsuperscript{\small\textregistered}} \unskip\strut\par }
+\vspace {-0.3cm}
+{\LARGE\bfseries {BENGALURU-560059} \unskip\strut\par }
+\vspace {-0.3cm}
+{\large {(Autonomous Institution Affiliated to VTU, Belagavi)} \unskip\strut\par }
+
+{\ifPG \huge\bfseries \@PGprgName\unskip\strut\par \else \large\bfseries {DEPARTMENT OF ARTIFICIAL INTELLIGENCE \& MACHINE LEARNING} \unskip\strut\par \fi}
+\vspace{0.5cm}
+\includegraphics[width=2.5cm]{Figures/image3.png}\par
+{\huge\bfseries{\@title}\unskip\strut\par \global\titlelines=\the\prevgraf}
+{\large\bfseries \textit{Mini-Project Report}
+\unskip\strut\par \global\titlelines=\the\prevgraf}
+% {\huge\bfseries{\@title}\unskip\strut\par \global\titlelines=\the\prevgraf}% To count the number of lines used in the title - to adjust the spacing of title page
 \setcounter{numtitlelines}{\the\titlelines}
 \vspace{1cm}
-{\Large\itshape A \ifMinor Minor \else Major \fi Project Report (\@subCode)\unskip\strut\par}
-\vspace{0.25cm}
-{\Large\bfseries Submitted by,\unskip\strut\par}
+% {\Large\itshape A \ifMinor Minor \else Major \fi Project Report (\@subCode)\unskip\strut\par}
+\vspace{-0.25cm}
+
+
+% {\large \bfseries \textit{\@subCode} \unskip\strut\par}
+{\large \bfseries \textit{Submitted By}\unskip\strut\par}
+
 \end{center}
-{\noindent\large\bfseries\@stuNameA\unskip\strut}\hfill{\large\bfseries\@stuUSNA\unskip\strut\par}
+
+{\noindent\large\bfseries{\@stuNameA}\unskip\strut}\hfill{\large\bfseries{\@stuUSNA}\unskip\strut\par}
+
+\vspace{0.125cm}
+% \ifPG
+% \vspace{0.5cm}
+% \else
+{\noindent\large\bfseries{\@stuNameB}\unskip\strut}\hfill{\large\bfseries{\@stuUSNB}\unskip\strut\par}
+
+\vspace{0.125cm}
+
+
+{\noindent\large\bfseries{\@stuNameC}\unskip\strut}\hfill{\large\bfseries{\@stuUSNC}\unskip\strut\par}
+
 \vspace{0.25cm}
-\ifPG
-\vspace{0.5cm}
-\else
-{\noindent\large\bfseries\@stuNameB\unskip\strut}\hfill{\large\bfseries\@stuUSNB\unskip\strut\par}
-\vspace{0.25cm}
-{\noindent\large\bfseries\@stuNameC\unskip\strut}\hfill{\large\bfseries\@stuUSNC\unskip\strut\par}
-\vspace{0.25cm}
-{\noindent\large\bfseries\@stuNameD\unskip\strut}\hfill{\large\bfseries\@stuUSND\unskip\strut\par}
+\begin{center}
+    {\large \bfseries \textit{ in partial fulfillment of the requirements for the \@semesterNum th Semester}\unskip\strut\par}
+{\large \bfseries \textit{\@courseName (\@subCode)}\unskip\strut\par}
+\end{center}
+
+
+% \vspace{0.25cm}
+% {\noindent\large\bfseries{\@stuNameC}\unskip\strut}\hfill{\large\bfseries{\@stuUSNC}\unskip\strut\par}
+
+% \vspace{0.25cm}
+% {\noindent\large\bfseries{\@stuNameD}\unskip\strut}\hfill{\large\bfseries{\@stuUSND}\unskip\strut\par}
+
 \fi
+% \vspace{0.25cm}
+% {\noindent\large\bfseries\@stuNameE\unskip\strut}\hfill{\large\bfseries\@stuUSNE\unskip\strut\par}
+% \fi
 
 %Updated in Ver 3.4 [4/6/2021]
 \ifGuideNameCUsed
@@ -232,6 +290,8 @@
 \else
 \vspace{1cm}
 \fi
+
+\vspace{-0.5cm}
 
 \begin{center}
 {\Large\bfseries Under the guidance of \unskip\strut\par}
@@ -251,12 +311,15 @@
 {% Internal guide
 \begin{center}
 {\large\bfseries\@guideNameA\unskip\strut\par}
-\vspace{0.1cm}
-{\large\@guideDesigA\unskip\strut\par}
-\vspace{0.1cm}
-{\large\@guideDeptA\unskip\strut\par}
-\vspace{0.1cm}
-{\large\@guideOrgA\unskip\strut\par}
+\vspace{-0.25cm}
+{\large\bfseries\@guideDesigA\unskip\strut\par}
+\vspace{-0.25cm}
+{\large\bfseries\@guideDeptA\unskip\strut\par}
+\vspace{-0.25cm}
+{\large\bfseries\@guideOrgA\unskip\strut\par}
+\vspace{-0.25cm}
+{\large\bfseries\ Bengaluru-59\unskip\strut\par}
+\vspace{-2cm}
 \end{center}
 }
 \fi
@@ -278,12 +341,13 @@
 \fi
 
 \begin{center}% May be try use \vbox cmd for equal spacing, but I need to know the better location (lower)
-{\large\bfseries In partial fulfillment of the requirements for the degree of \par}
+% {\large\bfseries In partial fulfillment of the requirements for the degree of \par}
+% \vspace{0.25cm}
+% {\large\bfseries \ifPG \@mastersInLF\, \else Bachelor of Engineering \fi in \par}
 \vspace{0.25cm}
-{\large\bfseries \ifPG \@mastersInLF\, \else Bachelor of Engineering \fi in \par}
+% {\ifPG \Large\bfseries \@PGprgName\unskip\strut\par \else \Large\bfseries \@departmentLF\unskip\strut\par \fi}
 \vspace{0.25cm}
-{\ifPG \Large\bfseries \@PGprgName\unskip\strut\par \else \Large\bfseries \@departmentLF\unskip\strut\par \fi}
-\vspace{0.25cm}
+{\Large\bfseries\ Academic Year \par}
 {\Large\bfseries\@acadYear \par}
 \end{center}
 %\end{tcolorbox}
@@ -294,23 +358,45 @@
 
 %%%%%%%%%%%%%%%%%% Page Style %%%%%%%%%%%%%%%%%%%%%%%%
 %
+\fancypagestyle{plain}{%              
+    \fancyhf{}%            
+    
+    \renewcommand{\headrulewidth}{0.0pt}%    
+    \renewcommand{\footrulewidth}{0.0pt}%
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[line width = 1.5pt] ($(current page.north west) + (0.75in,-0.75in)$) rectangle ($(current page.south east) + (-0.75in,0.75in)$);
+    \end{tikzpicture}
+    \ifPG
+    \fancyfoot[C] {\@mastersInSF\, in \@PGprgName, Department of AI \& ML,\space\@acadYear}%
+    \else
+    \fancyfoot[L] {Department of AIML, RVCE}%
+    \fancyhead[R] {\@acadYear}%
+    \fi
+    \fancyfoot[R] {\thepage}%
+    % \renewcommand{\headrulewidth}{0.0pt}% Line at the header invisible
+    \fancyhead[L] {\@title}%
+}
+
 \fancypagestyle{mplain}{%              
-    \fancyhf{}%                            
-    \renewcommand{\headrulewidth}{0.2pt}%    
+    \fancyhf{}%          
+    
+    \renewcommand{\headrulewidth}{0.0pt}%    
     \renewcommand{\footrulewidth}{0.2pt}%
+    
     \ifPG
     \fancyfoot[C] {\@mastersInSF\, in \@PGprgName, Department of \@departmentSF,\space\@acadYear}%
     \else
-    \fancyfoot[L] {UG\space\ifMinor Minor\else Major\fi\space Project Report}%
-    \fancyfoot[C] {Department of \@departmentSF,\space\@acadYear}%
+    \fancyfoot[L] {Department of AIML, RVCE}%
+    \fancyhead[R] {\@acadYear}%
     \fi
     \fancyfoot[R] {\thepage}%
-    \fancyhead[C] {RV College of Engineering\textsuperscript{\small\textregistered}, Bengaluru - 560059}%
+    \fancyhead[L] {\@title}%
 }
 \fancypagestyle{emptypg}{%              
     \fancyhf{}%                            
-    \renewcommand{\headrulewidth}{0.2pt}%    
-    \renewcommand{\footrulewidth}{0.2pt}%
+    \renewcommand{\headrulewidth}{0.0pt}%    
+    \renewcommand{\footrulewidth}{0.0pt}%
+
     \ifPG
     \fancyfoot[C] {\@mastersInSF\, in \@PGprgName, Department of \@departmentSF,\space\@acadYear}%
     \fancyfoot[R] {}%
@@ -321,12 +407,33 @@
     \fi    
     \fancyhead[C] {RV College of Engineering\textsuperscript{\small\textregistered}, Bengaluru - 560059}%
 }
-\fancypagestyle{fplain}{%              
-    \fancyhf{}%                            
-    \renewcommand{\headrulewidth}{0.2pt}%    
-    \renewcommand{\footrulewidth}{0.2pt}%
+
+%% Manipulate this pagestyle to change the table of contents, lists, and the regular chapter pages
+\fancypagestyle{fplain}{%          
+    \fancyhf{}%
+    \fancyhead{} % clear all header fields
+    
+    
+    \fancyhead[R] {\@acadYear}%
+    %% The below line used to be \fancyhead[LE,LO]{\setlength{\unitlength}{1in}%
+    \fancyhead[LO]{\setlength{\unitlength}{1in}%
+        \@title
+        %% This mess exists to put a border on every single page, remove if you don't want a border, however teachers like there to be a border.
+      \begin{tikzpicture}[remember picture, overlay]
+        \draw[line width = 1.5pt] ($(current page.north west) + (0.75in,-0.75in)$) rectangle ($(current page.south east) + (-0.75in,0.75in)$);
+    \end{tikzpicture}}
+    \fancyfoot[R] {\thepage}%
+    % \renewcommand{\headrulewidth}{0.0pt}% Line at the header invisible
+    \fancyfoot[L] {Department of AIML, RVCE}%
+    
+    
+    \renewcommand{\headrulewidth}{0.0pt}%    
+    \renewcommand{\footrulewidth}{0.0pt}%
 %	\fancyhead[L]{\vrule depth \textheight \toc}%
-    \fancyfoot[C] {\thepage}%
+    
+    %     \begin{tikzpicture}[remember picture, overlay]
+    %   \draw[line width = 1.5pt] ($(current page.north west) + (0.75in,-0.75in)$) rectangle ($(current page.south east) + (-0.75in,0.75in)$);
+    % \end{tikzpicture}
 }
 
 %%%%%%%%%%%%%%%% Section Style %%%%%%%%%%%%%%%%%%%%%%%
@@ -662,54 +769,56 @@
   }%
 % set all keys
   {%
-	{%1st page
-\clearpage
-\thispagestyle{empty}
-	\@pgonetrue\@pgtwofalse
-    \parindent\z@
-    \normalfont%
-	\vspace*{0.35\paperheight}
-    \ifnum \c@secnumdepth>\m@ne%
-      \if@mainmatter%
-         \chapterbefore@pnr%
-		 \if@leftpgone%
-			\raggedright
-		 \fi%
-		 \if@centerpgone%
-			\centering
-		 \fi%
-		 \if@rightpgone%
-			\raggedleft
-		 \fi%
-         \if@leftname
-            \printnumber
-         \fi%
-         \printchaptername
-         \if@rightname
-            \printnumber
-         \fi%
-         \chapterafter@pnr
-      \fi%
-    \fi%
-     %chapter title
-    \interlinepenalty\@M%
-    \titlebeforeskip@pnr%
-    \titlefontfamily@pnr%
-	\titlefontsizepgone@pnr
-    \titlefontweight@pnr%
+% First page, with just chapter number and name
+
+% 	{%1st page
+% \clearpage
+% \thispagestyle{empty}
+% 	\@pgonetrue\@pgtwofalse
+%     \parindent\z@
+%     \normalfont%
+% 	\vspace*{0.35\paperheight}
+%     \ifnum \c@secnumdepth>\m@ne%
+%       \if@mainmatter%
+%          \chapterbefore@pnr%
+% 		 \if@leftpgone%
+% 			\raggedright
+% 		 \fi%
+% 		 \if@centerpgone%
+% 			\centering
+% 		 \fi%
+% 		 \if@rightpgone%
+% 			\raggedleft
+% 		 \fi%
+%          \if@leftname
+%             \printnumber
+%          \fi%
+%          \printchaptername
+%          \if@rightname
+%             \printnumber
+%          \fi%
+%          \chapterafter@pnr
+%       \fi%
+%     \fi%
+%      %chapter title
+%     \interlinepenalty\@M%
+%     \titlebeforeskip@pnr%
+%     \titlefontfamily@pnr%
+% 	\titlefontsizepgone@pnr
+%     \titlefontweight@pnr%
     
-    \titlefontcolor@pnr%
-    %\selectfont%
-    \titlebefore@pnr%
-		{#2}
-    \titleafter@pnr%
-    \par\nobreak%
-% skip after title
-    \titleafterskip@pnr%
-% headers
-    %\thispagestyle{\headerstyle@pnr}%
-   \thispagestyle{emptypg}%
-   }
+%     \titlefontcolor@pnr%
+%     %\selectfont%
+%     \titlebefore@pnr%
+% 		{#2}
+%     \titleafter@pnr%
+%     \par\nobreak%
+% % skip after title
+%     \titleafterskip@pnr%
+% % headers
+%     %\thispagestyle{\headerstyle@pnr}%
+%    \thispagestyle{emptypg}%
+%    }
    \pagebreak
    {%2nd page
    \@pgtwotrue\@pgonefalse
